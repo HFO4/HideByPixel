@@ -99,7 +99,7 @@ def readImg(filename):
 					else:
 						t=t+ "0"
 						count = 0
-		return bringback(t[17:-17])
+		return bringback(t[17:-16])
 	else:
 		return u"未读取到结果"
 reload(sys)
