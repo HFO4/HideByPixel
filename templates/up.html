@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- Mobile support -->
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+
+    <link rel="stylesheet" href="static/css/mdui.min.css?v=2873192a693ae603ce98084bbb84cb86"/>
+<title>像素隐写生成 By Aaron</title>
+<script type="text/javascript" src="http://127.0.0.1/includes/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="static/js/mdui.min.js"></script>
+<style type="text/css">
+	body{
+    font-family: "微软雅黑"
+  }
+	.upfilebox {
+                position: relative;
+                    float: left;
+                    width: 100px;
+            }
+            .upfilebox input {
+                width: 100px;
+                height: 45px;
+                position: relative;
+                z-index: 9;
+                opacity: 0;
+            }
+            .upfilebox label {
+                position: absolute;
+                background: #501521;
+                display: inline-block;
+                color: #fff;
+                width: 100px;
+                height: 45px;
+                line-height: 45px;
+                text-align: center;
+                top: 0px;
+                left: 0px;
+            }
+</style>
+  </head>
+  <body class=" mdui-appbar-with-toolbar mdui-theme-primary-indigo mdui-theme-accent-pink" >
+
+<header class="mdui-appbar mdui-appbar-fixed">
+  <div class="mdui-toolbar mdui-color-theme">
+    <a class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" href="/"><i class="mdui-icon material-icons">&#xe88a;</i></a>
+    <a href="./" class="mdui-typo-headline mdui-hidden-xs">像素隐写生成</a>
+      
+        <div class="mdui-toolbar-spacer"></div>
+    
+    <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" mdui-menu="{target: '#header-menu', fixed: true}"><i class="mdui-icon material-icons">&#xe5d4;</i></span>
+    <ul class="mdui-menu" id="header-menu">
+      <li class="mdui-menu-item">
+        <a href="https://aoaoao.me" class="mdui-ripple">博客首页</a>
+      </li>
+      <li class="mdui-menu-item">
+        <a href="https://github.com/HFO4/HideByPixel" target="_blank" class="mdui-ripple">Github</a>
+      </li>
+    </ul>
+  </div>
+</header>
+<div class="mdui-container">
+<br>
+<div class="mdui-panel" mdui-panel>
+  
+  <div class="mdui-panel-item mdui-panel-item-open">
+    <div class="mdui-panel-item-header">
+      <div class="mdui-panel-item-title"><i class="mdui-icon material-icons">&#xe556;</i>指南</div>
+
+      <i class="mdui-panel-item-arrow mdui-icon material-icons">&#xe313;</i>
+    </div>
+    <div class="mdui-panel-item-body">
+      <p>欢迎使用图像像素隐写生成工具。本工具将微调现有图像的各个像素的色彩值，以此达到存放信息的目的。目前支持jpg,bmp,png等格式的图像，图像生成后请不要进行有损压缩，否则会损坏其中存放的信息。理论上一张图像可以存放的字数（中英文都算为1个字）=(图像长像素数X图像宽像素数-34)/16。比如：一张500像素X500像素的图像可以存放约15万字。</p>
+  
+  
+    </div>
+  </div>
+  
+
+  </div>
+  <div class="mdui-col-md-4">
+<div class="mdui-panel" mdui-panel>
+  
+  <div class="mdui-panel-item mdui-panel-item-open">
+    <div class="mdui-panel-item-header">
+      <div class="mdui-panel-item-title" ><i class="mdui-icon material-icons">&#xe3b7;</i>制作图像</div>
+
+      <i class="mdui-panel-item-arrow mdui-icon material-icons">&#xe313;</i>
+    </div>
+    <div class="mdui-panel-item-body">
+     
+  <form  id="z" action="request" method="post" enctype="multipart/form-data" style="margin-bottom: 22px;">
+  <div class="mdui-textfield mdui-textfield-floating-label">
+  <label class="mdui-textfield-label" >要隐藏的文本信息</label>
+  <textarea class="mdui-textfield-input" name="t"></textarea>
+</div>
+<div class="upfilebox">
+<label class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-color-theme-accent mdui-ripple">选择图片</label>
+<input type="file" id="upload" name="upload" />
+
+</div>
+<div style=" padding-top:15px;   float: right;" align="">支持主流图像格式,大小2mb以内</div>
+<div style="    position: relative;">
+<br><br><br>
+<button type="submit"id="zz"class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" style="width: 100%"><i class="mdui-icon material-icons">&#xe243;</i>上传并制作</button>
+</div>
+  </form>
+    </div>
+  </div>
+  
+
+  </div>
+</div>
+  <div class="mdui-col-md-4">
+<div class="mdui-panel" mdui-panel>
+  
+  <div class="mdui-panel-item mdui-panel-item-open">
+    <div class="mdui-panel-item-header">
+      <div class="mdui-panel-item-title" ><i class="mdui-icon material-icons">&#xe417;</i>读取图像</div>
+
+      <i class="mdui-panel-item-arrow mdui-icon material-icons">&#xe313;</i>
+    </div>
+    <div class="mdui-panel-item-body">
+     
+  <form  id="r"action="read_handle" method="post" enctype="multipart/form-data"style="margin-bottom: 61px;margin-top: 61px;" >
+
+<div class="upfilebox">
+<label class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-color-theme-accent mdui-ripple">选择图片</label>
+<input type="file" id="upload" name="upload" />
+
+</div>
+<div style=" padding-top:15px;   float: right;" align="">选择已生成的图像进行解析</div>
+<div style="    position: relative;">
+<br><br><br>
+<button type="submit"id="rr"class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" style="width: 100%"><i class="mdui-icon material-icons">&#xe243;</i>上传并读取</button>
+</div>
+  </form>
+    </div>
+  </div>
+  
+
+  </div>
+</div>
+
+
+  <div class="mdui-col-md-4">
+<div class="mdui-panel" mdui-panel>
+  
+  <div class="mdui-panel-item mdui-panel-item-open">
+    <div class="mdui-panel-item-header">
+      <div class="mdui-panel-item-title" ><i class="mdui-icon material-icons">&#xeb3f;</i>字数计算</div>
+
+      <i class="mdui-panel-item-arrow mdui-icon material-icons">&#xe313;</i>
+    </div>
+    <div class="mdui-panel-item-body">
+     
+计算一张图像能容纳的字数：
+<div class="mdui-textfield mdui-textfield-floating-label">
+  <label class="mdui-textfield-label">图像宽度(单位：像素)</label>
+  <input class="mdui-textfield-input" type="text" id="pw"/>
+</div>
+<div class="mdui-textfield mdui-textfield-floating-label">
+  <label class="mdui-textfield-label">图像高度(单位：像素)</label>
+  <input class="mdui-textfield-input" type="text" id="ph"/>
+</div>
+<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" id="cacu">计算</button>
+    </div>
+  </div>
+  
+
+  </div>
+</div>
+
+</div>
+<script type="text/javascript">
+$("#z").submit(function(e){
+  $("#zz").attr({"disabled":"disabled"});
+	$("#zz").html("请稍后");
+});
+$("#r").submit(function(e){
+  $("#rr").attr({"disabled":"disabled"});
+	$("#rr").html("请稍后");
+});
+$("#cacu").click(function(){
+  w = $("#pw").val();
+  h = $("#ph").val();
+  res=parseInt((w*h-34)/16)
+  if(res<=0){
+    mdui.snackbar({
+  message: '尺寸太小，不能容纳字符'
+});
+  }else{
+    mdui.snackbar({
+  message: '最多容纳'+res+"个字"
+});
+  }
+})
+</script>
