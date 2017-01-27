@@ -101,7 +101,7 @@ def readImg(filename):
 						count = 0
 		return bringback(t[17:-17])
 	else:
-		return "badii"
+		return u"未读取到结果"
 reload(sys)
 sys.setdefaultencoding('utf-8')
 app = Flask(__name__)
