@@ -2,7 +2,7 @@
 一个利用像素隐藏文字的程序
 
 
-# 使用
+## 使用
 ```bash
 pip install -r requirements.txt
 python web.py
