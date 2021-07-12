@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-import random
+import random, os
 
 from PIL import Image
 from flask import render_template, Flask, request, send_from_directory
